@@ -48,3 +48,19 @@ bool is_valid(int number){
   else
     {cout<<"\nWrong choice try again\n"; return false;}
 }
+
+void backtrack(int table[][3])
+{
+  for(int i=0, i<3, i++)
+  {
+    for(int j=1, j<3, j++)
+    {
+      if(table[i][j]!='X' || table[i][j]!='O')
+        {
+          table[i][j]='X';
+          break;
+        }
+    }
+  }
+
+}

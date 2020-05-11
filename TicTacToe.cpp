@@ -30,7 +30,7 @@ int main(int argc, char const *argv[]) {
     }
 
     while (counter<9) {
-      /* code */
+      backtrack(table);
     }
 
 
