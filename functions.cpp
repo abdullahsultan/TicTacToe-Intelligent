@@ -79,5 +79,24 @@ bool complete(int table[][3])
 
 char check_win(int table)
 {
-  
+  //////////////////////////////// Checking Row Wise /////////////////
+  if(table[0][0] == table[0][1] && table[0][1]==table[0][2])
+    return table[0][0];
+  else if(table[1][0] == table[1][1] && table[1][1]==table[1][2])
+      return table[1][0];
+  else if(table[2][0] == table[2][1] && table[2][1]==table[2][2])
+          return table[2][0];
+  ////////////////////////////// Checking Columns //////////////////
+  else if(table[0][0] == table[1][0] && table[1][0]==table[2][0])
+          return table[0][0];
+  else if(table[0][1] == table[1][1] && table[1][1]==table[2][1])
+          return table[0][1];
+  else if(table[0][2] == table[1][2] && table[1][2]==table[2][2])
+          return table[0][2];
+  /////////////////////////// Checking Diagonals////////////////////
+  else if(table[0][0] == table[1][1] && table[1][1]==table[2][2])
+          return table[0][0];
+  else if(table[2][0] == table[1][1] && table[1][1]==table[0][2])
+          return table[2][0];
+
 }
