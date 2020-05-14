@@ -29,7 +29,7 @@ int main(int argc, char const *argv[]) {
       counter++;
     }
 
-    while (counter<9) {
+    while (complete(table)) {
       backtrack(table);
     }
 

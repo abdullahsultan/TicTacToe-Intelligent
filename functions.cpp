@@ -64,3 +64,20 @@ void backtrack(int table[][3])
   }
 
 }
+
+bool complete(int table[][3])
+{
+  for(int x=0; x<3; x++)
+  {
+    for (int y = 0; y < 3; y++) {
+      if(table[x][y]!='X' || table[x][y]!='O')
+        return false;
+    }
+  }
+  return true;
+}
+
+char check_win(int table)
+{
+  
+}
