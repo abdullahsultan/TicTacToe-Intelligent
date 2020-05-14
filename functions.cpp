@@ -77,7 +77,7 @@ bool complete(int table[][3])
   return true;
 }
 
-char check_win(int table)
+char check_win(int table[][3])
 {
   //////////////////////////////// Checking Row Wise /////////////////
   if(table[0][0] == table[0][1] && table[0][1]==table[0][2])
@@ -98,5 +98,13 @@ char check_win(int table)
           return table[0][0];
   else if(table[2][0] == table[1][1] && table[1][1]==table[0][2])
           return table[2][0];
-
+  else
+          return 'N';
+}
+bool check_draw(int table[][3])
+{
+  if(complete(table) == true && check_win(table) == 'N')
+    return true;
+  else
+    return false;
 }
