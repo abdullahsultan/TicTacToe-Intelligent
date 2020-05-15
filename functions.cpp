@@ -32,9 +32,9 @@ void print_table(int table[][3])
 }
 void marker(int table[][3],int block,char x)
 {
-  for(int i=0, i<3, i++)
+  for(int i=0; i<3; i++)
   {
-    for(int j=1, j<3, j++)
+    for(int j=1; j<3; j++)
     {
       if(table[i][j]==block)
         table[i][j]=x;
@@ -51,18 +51,19 @@ bool is_valid(int number){
 
 void backtrack(int table[][3])
 {
-  for(int i=0, i<3, i++)
+  int temp[3][3];
+  copier(table,temp);
+  for(int i=0; i<3; i++)
   {
-    for(int j=1, j<3, j++)
+    for(int j=1; j<3; j++)
     {
-      if(table[i][j]!='X' || table[i][j]!='O')
+      if(temp[i][j]!='X' || temp[i][j]!='O')
         {
-          table[i][j]='X';
+          temp[i][j]='X';
           break;
         }
     }
   }
-
 }
 
 bool complete(int table[][3])
@@ -124,9 +125,9 @@ int critical_loose(int table[][3])
             }
             temp[x][y]=t;
           }
-          return -1;
       }
     }
+    return -1;
 }
 
 void copier(int table[][3],int temp[][3])
