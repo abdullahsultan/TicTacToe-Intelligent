@@ -108,3 +108,33 @@ bool check_draw(int table[][3])
   else
     return false;
 }
+
+int critical_loose(int table[][3])
+{
+    int temp[3][3]; copier(table,temp);
+    for(int x=0; x<3; x++)
+    {
+      for (int y = 0; y < 3; y++) {
+        if(temp[x][y]!='X' || temp[x][y]!='O')
+          {
+            int t = temp[x][y];
+            temp[x][y]='X';
+            if (check_win(temp) == 'X') {
+              return t;
+            }
+            temp[x][y]=t;
+          }
+          return -1;
+      }
+    }
+}
+
+void copier(int table[][3],int temp[][3])
+{
+  for(int x=0; x<3; x++)
+  {
+    for (int y = 0; y < 3; y++) {
+      temp[x][y] = table[x][y];
+    }
+  }
+}

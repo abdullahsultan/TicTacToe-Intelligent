@@ -7,3 +7,5 @@ void backtrack(int table[][3]);
 bool complete(int table[][3]);
 char check_win(int table[][3]);
 bool check_draw(int table[][3]);
+int critical_loose(int table[][3]);
+void copier(int table[][3],int temp[][3]);

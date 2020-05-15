@@ -16,7 +16,6 @@ int main(int argc, char const *argv[]) {
     cout << "Wrong choice, try again" << '\n';
   }
 
-  int counter;
   int block;
   if(first =='Y' || first=='y')
     {
@@ -26,7 +25,6 @@ int main(int argc, char const *argv[]) {
         if(is_valid(block))
         {marker(table,block,'X'); break;}
       }
-      counter++;
     }
 
     while (complete(table)) {
