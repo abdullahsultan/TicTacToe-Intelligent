@@ -25,13 +25,13 @@ int main(int argc, char const *argv[]) {
         cin>> in;
         block = (char) in+48;
         cout<<"Block "<<block<<endl;
-        if(is_valid(block))
+        if(is_valid(block,table))
         {marker(table,block,'X'); break;}
       }
       print_table(table);
       if(block != 52)
       {
-        marker(table,4,'O');
+        marker(table,52,'O');
         print_table(table);
       }
       else
@@ -53,11 +53,12 @@ int main(int argc, char const *argv[]) {
       while (true) {
         cin>> in;
         block = (char) in+48;
-        if(is_valid(block))
+        if(is_valid(block,table)==true)
           {
-            marker(table,block,'X'); break;
+            marker(table,block,'X');
             if(check_win(table)=='X')
               {cout<<"\n You won \n"; return 0;}
+             break;
           }
         }
         first='N';

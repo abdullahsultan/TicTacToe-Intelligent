@@ -44,11 +44,20 @@ void marker(char table[][3],char block,char p)
   }
 }
 
-bool is_valid(char number){
+bool is_valid(char number,char table[][3]){
   if(number>=48 && number<=56)
-    return true;
-  else
-    {cout<<"\nWrong choice try again\n"; return false;}
+  {
+    for(int i=0; i<3; i++)
+    {
+      for(int j=0; j<3; j++)
+      {
+        if(table[i][j]==number)
+          return true;
+      }
+    }
+  }
+    cout<<"\nWrong choice try again\n";
+    return false;
 }
 
 void backtrack(char table[][3])

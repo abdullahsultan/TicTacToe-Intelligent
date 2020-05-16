@@ -2,7 +2,7 @@
 void innitializer(char table[][3]);
 void print_table(char table[][3]);
 void marker(char table[][3],char block,char p);
-bool is_valid(char number);
+bool is_valid(char number,char table[][3]);
 void backtrack(char table[][3]);
 char further(char table[][3]);
 char further_draw(char table[][3]);
