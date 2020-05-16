@@ -16,6 +16,7 @@ void innitializer(int table[][3])
 }
 void print_table(int table[][3])
 {
+  cout << "\n\n";
   for(int x=0; x<3; x++)
   {
     for(int y=0; y<3; y++)
@@ -29,21 +30,22 @@ void print_table(int table[][3])
     }
     cout<<endl;
   }
+  cout << "\n\n";
 }
-void marker(int table[][3],int block,char x)
+void marker(int table[][3],int block,char p)
 {
   for(int i=0; i<3; i++)
   {
-    for(int j=1; j<3; j++)
+    for(int j=0; j<3; j++)
     {
       if(table[i][j]==block)
-        table[i][j]=x;
+        table[i][j]=p;
     }
   }
 }
 
 bool is_valid(int number){
-  if(number>0 && number<9)
+  if(number>=0 && number<9)
     return true;
   else
     {cout<<"\nWrong choice try again\n"; return false;}
@@ -51,19 +53,69 @@ bool is_valid(int number){
 
 void backtrack(int table[][3])
 {
+  int c = critical_loose(table);
+  if(c > -1)
+  {
+    for(int i=0; i<3; i++)
+    {
+      for(int j=0; j<3; j++)
+      {
+        if(table[i][j]==c)
+          {
+              table[i][j]='O'; return;
+          }
+      }
+    }
+  }
   int temp[3][3];
   copier(table,temp);
   for(int i=0; i<3; i++)
   {
-    for(int j=1; j<3; j++)
+    for(int j=0; j<3; j++)
     {
-      if(temp[i][j]!='X' || temp[i][j]!='O')
+      if(temp[i][j]!='X' && temp[i][j]!='O')
         {
-          temp[i][j]='X';
-          break;
+          int t = temp[i][j];
+          temp[i][j] = 'O';
+          cout << "\nBacktrack\n";
+          print_table(temp);
+          if(further(temp)=='O')
+            {
+              table[i][j]='O';
+              return;
+            }
+
+          temp[i][j] = t;
         }
     }
   }
+//  cout << "\nTTT\n" << '\n';
+//  print_table(temp);
+}
+
+char further(int table[][3])
+{
+  //cout<<"\nFURTHERGGGGGGGGGG\n";
+  bool turn = true;
+  int temp[3][3];
+  copier(table,temp);
+  for(int i=0; i<3; i++)
+  {
+    for(int j=0; j<3; j++)
+    {
+      if(temp[i][j]!='X' && temp[i][j]!='O')
+        {
+          if(turn == true)
+            {temp[i][j] = 'X'; turn = false;}
+          else
+            {temp[i][j] = 'O'; turn = true;}
+        }
+    }
+  }
+  cout << "\nFurther\n";
+  print_table(temp);
+  cout << "\nWin  \n"<<check_win(temp)<<endl;
+  return check_win(temp);
 }
 
 bool complete(int table[][3])
@@ -71,7 +123,7 @@ bool complete(int table[][3])
   for(int x=0; x<3; x++)
   {
     for (int y = 0; y < 3; y++) {
-      if(table[x][y]!='X' || table[x][y]!='O')
+      if(table[x][y]!='X' && table[x][y]!='O')
         return false;
     }
   }

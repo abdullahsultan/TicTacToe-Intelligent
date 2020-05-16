@@ -15,7 +15,7 @@ int main(int argc, char const *argv[]) {
       break;
     cout << "Wrong choice, try again" << '\n';
   }
-
+/////////////////// If user chooses 1st //////////////////////
   int block;
   if(first =='Y' || first=='y')
     {
@@ -25,10 +25,23 @@ int main(int argc, char const *argv[]) {
         if(is_valid(block))
         {marker(table,block,'X'); break;}
       }
+      print_table(table);
     }
 
-    while (complete(table)) {
+
+///////////////// Playing Real Game//////////////////////////
+    while (complete(table) != true) {
       backtrack(table);
+      print_table(table);
+      if(check_win(table)=='O')
+        {cout<<"\n AI won \n"; return 0;}
+      cout<<"\nChoose block(0-8)\n";
+      while (true) {
+        cin>>block;
+        if(is_valid(block))
+        {marker(table,block,'X'); break;}
+        }
+      print_table(table);
     }
 
 
