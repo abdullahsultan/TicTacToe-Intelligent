@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-  int table[3][3];
+  char table[3][3];
   innitializer(table);
   print_table(table);
 
@@ -16,36 +16,57 @@ int main(int argc, char const *argv[]) {
     cout << "Wrong choice, try again" << '\n';
   }
 /////////////////// If user chooses 1st //////////////////////
-  int block;
+  int in;
+  char block;
   if(first =='Y' || first=='y')
     {
       cout<<"\nChoose block(0-8)\n";
       while (true) {
-        cin>>block;
+        cin>> in;
+        block = (char) in+48;
+        cout<<"Block "<<block<<endl;
         if(is_valid(block))
         {marker(table,block,'X'); break;}
       }
       print_table(table);
+      if(block != 52)
+      {
+        marker(table,4,'O');
+        print_table(table);
+      }
+      else
+        first = 'n';
     }
 
 
 ///////////////// Playing Real Game//////////////////////////
     while (complete(table) != true) {
-      backtrack(table);
-      print_table(table);
-      if(check_win(table)=='O')
-        {cout<<"\n AI won \n"; return 0;}
+      if(first !='Y' && first != 'y')
+      {
+        backtrack(table);
+        print_table(table);
+        if(check_win(table)=='O')
+          {cout<<"\n AI won \n"; return 0;}
+
+      }
       cout<<"\nChoose block(0-8)\n";
       while (true) {
-        cin>>block;
+        cin>> in;
+        block = (char) in+48;
         if(is_valid(block))
-        {marker(table,block,'X'); break;}
+          {
+            marker(table,block,'X'); break;
+            if(check_win(table)=='X')
+              {cout<<"\n You won \n"; return 0;}
+          }
         }
+        first='N';
       print_table(table);
     }
 
 
-
+ if(check_draw(table)==true)
+    cout << "\nDRAW\n" << '\n';
 
 
   return 0;
